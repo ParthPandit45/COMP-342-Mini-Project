@@ -1,0 +1,20 @@
+# Visualization and model configuration
+CANVAS_W, CANVAS_H, PAD = 1100, 700, 80
+MSE_CANVAS_W, MSE_CANVAS_H = 1100, 180
+LEARNING_RATE = 0.01
+TRUE_S, TRUE_I = 1.5, 2.0
+INITIAL_S, INITIAL_I = 0.0, 5.0
+DELAY = 20
+MAX_ITER = 500
+N_POINTS = 50
+NOISE_STD = 1.5
+
+BG_TOP, BG_BOTTOM = "#0f172a", "#1e293b"
+GRID_COLOR, AXIS_COLOR = "#243453", "#5eead4"
+POINT_FILL, POINT_OUTLINE = "#60a5fa", "#0ea5e9"
+LINE_COLOR, LINE_GLOW = "#f97316", "#fb923c"
+RESIDUAL_COLOR = "#cbd5e1"
+TEXT_COLOR = "#e2e8f0"
+FONT_MAIN = ("Helvetica", 12)
+FONT_BOLD = ("Helvetica", 12, "bold")
+FONT_TITLE = ("Helvetica", 14, "bold")
