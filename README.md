@@ -1,6 +1,6 @@
 # Linear Regression (OpenGL)
 
-This project runs **OpenGL-only** (no Tkinter).
+This project runs **OpenGL-only**.
 
 ## Requirements
 - Python 3.10+ (tested on 3.12)
