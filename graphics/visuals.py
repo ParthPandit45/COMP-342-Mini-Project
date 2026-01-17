@@ -1,6 +1,5 @@
-import tkinter as tk
-import config as cfg
-from ui_helpers import create_rounded_rectangle
+from core import config as cfg
+from ui.ui_helpers import create_rounded_rectangle
 
 
 def draw_gradient(canvas_obj, width, height, top_color, bottom_color):
@@ -20,7 +19,7 @@ def draw_axes_and_grid(canvas_obj, model):
     plot_w, plot_h = cfg.CANVAS_W - 2 * cfg.PAD, cfg.CANVAS_H - 2 * cfg.PAD
     x0, y0 = cfg.PAD, cfg.PAD
     x1, y1 = cfg.PAD + plot_w, cfg.PAD + plot_h
-    
+
     # Add rounded border around plot area
     create_rounded_rectangle(
         canvas_obj, x0 - 5, y0 - 5, x1 + 5, y1 + 5,
@@ -28,23 +27,23 @@ def draw_axes_and_grid(canvas_obj, model):
         outline="#334155",
         width=2,
         fill="",
-        tags="static"
+        tags="static",
     )
-    
+
     for i in range(6):
         t = i / 5
         y = y1 - t * plot_h
-        canvas_obj.create_line(x0, y, x1, y, fill=cfg.GRID_COLOR, dash=(2, 4), tags="static", capstyle=tk.ROUND)
+        canvas_obj.create_line(x0, y, x1, y, fill=cfg.GRID_COLOR, dash=(2, 4), tags="static", capstyle="round")
         y_val = model.Y_MIN + t * model.Y_RANGE
         canvas_obj.create_text(x0 - 30, y, text=f"{y_val:4.1f}", fill=cfg.TEXT_COLOR, font=cfg.FONT_MAIN, tags="static")
     for i in range(6):
         t = i / 5
         x = x0 + t * plot_w
-        canvas_obj.create_line(x, y0, x, y1, fill=cfg.GRID_COLOR, dash=(2, 4), tags="static", capstyle=tk.ROUND)
+        canvas_obj.create_line(x, y0, x, y1, fill=cfg.GRID_COLOR, dash=(2, 4), tags="static", capstyle="round")
         x_val = model.X_MIN + t * (model.X_MAX - model.X_MIN)
         canvas_obj.create_text(x, y1 + 20, text=f"{x_val:4.1f}", fill=cfg.TEXT_COLOR, font=cfg.FONT_MAIN, tags="static")
-    canvas_obj.create_line(x0, y1, x1, y1, fill=cfg.AXIS_COLOR, width=2, tags="static", capstyle=tk.ROUND)
-    canvas_obj.create_line(x0, y0, x0, y1, fill=cfg.AXIS_COLOR, width=2, tags="static", capstyle=tk.ROUND)
+    canvas_obj.create_line(x0, y1, x1, y1, fill=cfg.AXIS_COLOR, width=2, tags="static", capstyle="round")
+    canvas_obj.create_line(x0, y0, x0, y1, fill=cfg.AXIS_COLOR, width=2, tags="static", capstyle="round")
 
 
 def draw_data_points(canvas_obj, model):
@@ -55,7 +54,7 @@ def draw_data_points(canvas_obj, model):
 
 def init_mse_chart(mse_canvas):
     draw_gradient(mse_canvas, cfg.MSE_CANVAS_W, cfg.MSE_CANVAS_H, cfg.BG_BOTTOM, cfg.BG_TOP)
-    
+
     # Add rounded border
     create_rounded_rectangle(
         mse_canvas, 5, 5, cfg.MSE_CANVAS_W - 5, cfg.MSE_CANVAS_H - 5,
@@ -63,9 +62,9 @@ def init_mse_chart(mse_canvas):
         outline="#334155",
         width=2,
         fill="",
-        tags="border"
+        tags="border",
     )
-    
+
     for i in range(5):
         y = 10 + i * (cfg.MSE_CANVAS_H - 20) / 4
         mse_canvas.create_line(10, y, cfg.MSE_CANVAS_W - 10, y, fill=cfg.GRID_COLOR, dash=(2, 4), tags="static")
@@ -91,7 +90,7 @@ def update_mse_chart(mse_canvas, mse_history, current_mse):
     for i in range(1, len(points)):
         x0, y0 = points[i - 1]
         x1, y1 = points[i]
-        mse_canvas.create_line(x0, y0, x1, y1, fill=cfg.LINE_GLOW, width=2, smooth=True, tags="dynamic", capstyle=tk.ROUND, joinstyle=tk.ROUND)
+        mse_canvas.create_line(x0, y0, x1, y1, fill=cfg.LINE_GLOW, width=2, smooth=True, tags="dynamic", capstyle="round", joinstyle="round")
     last_x, last_y = points[-1]
     mse_canvas.create_oval(last_x - 4, last_y - 4, last_x + 4, last_y + 4, fill=cfg.LINE_COLOR, outline="", tags="dynamic")
     mse_canvas.create_text(cfg.MSE_CANVAS_W - 12, last_y, text=f"{current_mse:.2f}", anchor="e", fill=cfg.TEXT_COLOR, font=cfg.FONT_BOLD, tags="dynamic")

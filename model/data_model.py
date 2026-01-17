@@ -1,5 +1,6 @@
 import numpy as np
-import config as cfg
+
+from core import config as cfg
 
 
 class DataModel:

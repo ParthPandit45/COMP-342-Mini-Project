@@ -17,7 +17,7 @@ class MetricsTracker:
         self.iteration_history.append(iteration)
         self.mse_history.append(metrics.mean_squared_error(y_true, y_pred))
         self.mae_history.append(metrics.mean_absolute_error(y_true, y_pred))
-        
+
         # Calculate R² score
         ss_res = np.sum((y_true - y_pred) ** 2)
         ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
